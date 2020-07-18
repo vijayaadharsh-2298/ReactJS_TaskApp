@@ -1,0 +1,23 @@
+.box{
+    width: 200px;
+    height: auto;
+}
+
+.viewListLink{
+    font-weight: bold;
+    color: #000000;
+    font-size: 20px;
+}
+
+.viewListLink:link {
+    text-decoration: none;
+}
+
+.viewListLink:visited {
+    text-decoration: none;
+}
+
+.viewListLink:hover {
+    color: blue;
+}
+
