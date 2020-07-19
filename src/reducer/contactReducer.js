@@ -20,16 +20,12 @@ export default (state = defaultStateOfContact, action ) => {
                     return contact
                 };
             });
-        // case 'SET_CONTACTS':
-        //         if(state.map((c) => {
-        //             return c.contactId !== action.contactId
-        //         })){
-        //             return [
-        //                 ...state,
-        //                 action.contacts
-        //             ];
-        //         }
-        //         break;
+        case 'SET_CONTACTS':
+            return [
+                ...state,
+                action.contacts
+            ];
+
         default:
             return state;
     };
