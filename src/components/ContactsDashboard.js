@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import '../styles/ContactsDashboard.css';
@@ -6,22 +6,36 @@ import '../styles/ContactsDashboard.css';
 import ContactList from './ContactList';
 import AddContact from './AddContact';
 import { setContacts } from '../actions/contactAction';
+import globalStore from '../store/globalStore';
+import { setMessage } from '../actions/messageAction';
 
-const ContactDashboard = (props) => {
-    const [form, setFormValue] = useState(false);
+class ContactDashboard extends Component{
 
-    const displayForm = () => {
-        setFormValue(!form);
+    constructor(props){
+        super(props);
+        this.state = {
+            form: false
+        }
+    };
+
+    store = globalStore();
+
+    displayForm = () => {
+        this.setState({
+            form: this.state.form ? false : true
+        })
     }
+
+    render(){
     return(
         <div className="container">
             <div className="row">
                 <div className="col-xs-4">
                     <div className="m-2 dashboard">
-                    {   props.contacts.length > 0 ?
+                    {   this.props.contacts.length > 0 ?
                         <div>
                         {
-                                props.contacts.map((c) => (
+                                this.props.contacts.map((c) => (
                                 <div key={c.contactId}>
                                     <ContactList contactId={c.contactId} name={c.name} about={c.about} />
                                 </div>
@@ -35,35 +49,37 @@ const ContactDashboard = (props) => {
                 <div className="col-xs-4">
                     <div>
                     {
-                        form &&             
+                        this.state.form &&             
                         <div>
-                            <AddContact showForm={displayForm}/>
+                            <AddContact showForm={this.displayForm}/>
                         </div>
                     }
                     </div>
                 </div>
                 <div className="col-xs-4">
                 {
-                    !form  && 
+                    !this.state.form  && 
                     <button className="btn btn-success m-2 float-right" 
-                    onClick={displayForm}
+                    onClick={this.displayForm}
                     >Add Contact</button>
                 }
                 </div>
             </div>
         </div>
-    )
+    )}     
 };
 
 const mapStateToProps = (state) => {
     return {
-        contacts: state.contacts
+        contacts: state.contacts,
+        messages: state.messages
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        setContacts: (contacts) => dispatch(setContacts(contacts))
+        setContacts: (contacts) => dispatch(setContacts(contacts)),
+        setMessage: (message ) => dispatch(setMessage(message))
     }
 }
 

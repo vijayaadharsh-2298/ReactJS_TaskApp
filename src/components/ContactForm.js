@@ -16,6 +16,10 @@ class ContactForm extends Component{
         };
     };
 
+    onCancel = () => {
+        this.props.history.push("/")
+    }
+
     onNameChange = (e) => {
         const name = e.target.value;
         this.setState(() => ({name}))

@@ -23,6 +23,9 @@ class ChatForm extends Component{
         this.props.sendMessage({senderId: this.state.contactId, to: this.state.to, message: this.state.message});
         this.props.history.push("/");
     }
+    onCancel = () => {
+        this.props.history.push("/");
+    }
     render(){
         return(
             <div className="chatForm">
@@ -39,6 +42,7 @@ class ChatForm extends Component{
                         value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})}></textarea> 
                     </div>
                     <button className="btn btn-success m-4">Send</button>
+                    <button className="btn btn-danger" onClick={this.onCancel}>Cancel</button>
                 </form>
             </div>
         )

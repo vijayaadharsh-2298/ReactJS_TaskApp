@@ -6,4 +6,11 @@ const sendMessage = (id, message) => {
     }
 };
 
-export {sendMessage };
+ const setMessage = (message) => {
+     return{
+         type: 'SET_MESSAGE',
+         message
+     }
+ }
+
+export {sendMessage, setMessage };

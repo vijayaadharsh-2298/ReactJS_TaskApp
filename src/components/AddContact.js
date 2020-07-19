@@ -6,6 +6,7 @@ import { addContact } from '../actions/contactAction';
 
 class AddContact extends Component {
     onsubmit = ({contactId, name, about}) => {
+        
         this.props.addContact({contactId,name,about})
     }
     render(){

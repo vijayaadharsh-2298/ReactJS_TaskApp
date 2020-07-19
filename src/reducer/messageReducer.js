@@ -8,6 +8,11 @@ export default (state = message, action) => {
                 action.id,
                 action.message
             ]
+        case 'SET_MESSAGE':
+            return [
+                ...state,
+                action.message
+            ]
         default:
             return state;
     }
